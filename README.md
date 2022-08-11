@@ -10,10 +10,15 @@ https://anof-cyber.github.io/CryptoJS/
 
 ## Screenshots
 
-![App Screenshot](https://i.postimg.cc/Z51TQbyC/CryptoJS.png)
+![App Screenshot](https://i.postimg.cc/2SR1kp1M/Crypto.png)
 
 
 ## Authors
 
 - [@AnoF](https://twitter.com/Ano_F_)
+
+## Encryption
+
+- AES 128-CBC
+- AES 256-CBC
 
