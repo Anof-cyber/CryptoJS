@@ -1,83 +1,241 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
+  <head>    
+    <title>CryptoJS - AnoF</title>
     <meta charset="utf-8">
-<script src="assets/js/aes.js"></script>
-<script src="assets/js/sha256.min.js"></script>
-<script src="assets/js/aes.min.js"> </script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>CrytpJS</title>
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/ionicons.min.css">
-    <link rel="stylesheet" href="assets/css/styles.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet"/>
+    
+    <link type="image/png" sizes="96x96" rel="icon" href="assets/image/icon.png">
+    
+
+
+    <style>
+
+
+.footer {
+  
+  padding: 10px 0;
+}
+.footer a {
+  color: #70726F;
+  font-size: 20px;
+  padding: 10px;
+  border-right: 1px solid #70726F;
+  transition: all .5s ease;
+}
+.footer a:first-child {
+  border-left: 1px solid #70726F;
+}
+.footer a:hover {
+  color: black;
+}
+
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+    </style>
 </head>
+  <body>
+    <div class="container bg-light">
 
-<body style="width: 100%;">
-    <nav class="navbar navbar-light navbar-expand-lg navigation-clean">
-        <div class="container"><a class="navbar-brand" href="#">Crypto JS</a></div>
-    </nav>
-    <div class="container">
-        <div class="row">
-            <div class="col-auto col-md-6">
-                <div>
-                    <h1 style="font-size: 20px;">AES Encryption</h1>
-                    <div><label class="form-label">Plain Text :&nbsp;</label><input type="text" id="aesplainttext"></div>
-                    <div><label class="form-label">Key :&nbsp;</label><input type="text" id="aesplaintkey"></div>
-                    <div><label class="form-label" id="aesplainvalue">Value</label></div>
-                    <div class="text-center text-sm-center text-md-center text-lg-center text-xl-center text-xxl-center"><button class="btn btn-primary text-start text-sm-start text-md-start text-lg-start text-xl-start text-xxl-start" type="button" onclick="aesplainencryptfun()">Encrypt</button></div>
-                </div>
-            </div>
-            <div class="col-auto col-md-6">
-                <div>
-                    <h1 style="font-size: 20px;">AES Decryption</h1>
-                    <div><label class="form-label">Encrypted String :&nbsp;</label><input type="text" id="aesplainencstring"></div>
-                    <div><label class="form-label">Key :&nbsp;</label><input type="text" id="aesplainenckey"></div>
-                    <div><label class="form-label" id="aesplaindecvalue">Value</label></div>
-                    <div class="text-center text-sm-center text-md-center text-lg-center text-xl-center text-xxl-center"><button class="btn btn-primary text-start text-sm-start text-md-start text-lg-start text-xl-start text-xxl-start" type="button" onclick="aesplaindecryptfun()">Decrypt</button></div>
-                </div>
+    <div class="row">
+        <div class="col">
+            <div class="page-header">
+                <br>
+                <h2 class="pageheader-title">CryptoJS</h2>
+                
             </div>
         </div>
-    </div>
+    </div><br>
 
 
-    <br><br><br>
-    <div class="container">
-        <div class="row">
-            <div class="col-auto col-md-6">
-                <div>
-                    <h1 style="font-size: 20px;">AES Encryption CBC + Pkcs7 128</h1>
-                    <div><label class="form-label">Plain Text :&nbsp;</label><input type="text" id="aesencPkcs7text"></div>
-                    <div><label class="form-label">Key :&nbsp;</label><input type="text" id="aesencPkcs7key"></div>
-                    <div><label class="form-label">IV :&nbsp;</label><input type="text" id="aesencPkcs7iv"></div>
-                    <div><label class="form-label" id="aesencPkcs7value">Value</label></div>
-                    <div class="text-center text-sm-center text-md-center text-lg-center text-xl-center text-xxl-center"><button class="btn btn-primary text-start text-sm-start text-md-start text-lg-start text-xl-start text-xxl-start" type="button" onclick="aesencPkcs7vfun()">Encrypt</button></div>
-                </div>
+    <div class="row">
+        
+
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+            <h4>Encryption</h4>
+            <form method="post">
+            <div class="col-sm-12">
+                <label for="message" class="form-label"><b>Block Cipher</b></label>
+                <select class="form-select" required="required" id="encryptionblock">
+                    <option selected>Select:</option>
+                    <option value="CBC" selected>CBC</option>
+                    
+                </select>
+            </div><br>
+
+            <div class="col-sm-12">
+                <label for="message" class="form-label"><b>Type</b></label>
+                <select class="form-select" required="required" id="encryptiontype">
+                    <option selected>Select:</option>
+                    <option value="AES" selected>AES</option>
+                    
+                    
+                </select>
+            </div><br>
+
+            <div class="col-sm-12">
+                <label for="message" class="form-label"><b>Size</b></label>
+                <select class="form-select" required="required" id="encryptionsize">
+                    <option selected>Select:</option>
+                    <option value="128" selected>128</option>
+                    <option value="256">256</option>
+                    
+                </select>
+            </div><br> 
+
+            <div class="col-sm-12">
+            <div class="form-group">
+                <label for="message" class="form-label"><b>Plain Text</b></label>
+                <textarea class="form-control" id="encryptionplaintext" rows="5"></textarea>
             </div>
-            <div class="col-auto col-md-6">
-                <div>
-                    <h1 style="font-size: 20px;">AES Decryption CBC + Pkcs7 128</h1>
-                    <div><label class="form-label">Encrypted String :&nbsp;</label><input type="text" id="aesdecPkcs7string"></div>
-                    <div><label class="form-label">Key :&nbsp;</label><input type="text" id="aesdecPkcs7key"></div>
-                    <div><label class="form-label">IV :&nbsp;</label><input type="text" id="aesdecPkcs7iv"></div>
-                    <div><label class="form-label" id="aesdecPkcs7value">Value</label></div>
-                    <div class="text-center text-sm-center text-md-center text-lg-center text-xl-center text-xxl-center"><button class="btn btn-primary text-start text-sm-start text-md-start text-lg-start text-xl-start text-xxl-start" type="button" onclick="aesdecPkcs7fun()">Decrypt</button></div>
-                </div>
+        </div><br>
+
+
+        <div class="col-sm-12">
+        <div class="form-group">
+            <label for="message" class="form-label"><b>Key</b></label>
+            <input type="text" class="form-control" id="encryptionkey">
+        </div>
+    </div><br>
+
+    <div class="col-sm-12">
+        <div class="form-group">
+            <label for="message" class="form-label"><b>IV</b></label>
+            <input type="text" class="form-control" id="encryptioniv">
+        </div>
+    </div><br>
+
+
+    <div class="col-sm-12">
+        <div class="form-group">
+            <label for="message" class="form-label"><b>Output</b></label>
+            <textarea class="form-control" id="encryptionoutput" rows="5"></textarea>
+        </div>
+    </div><br>
+    
+            <button class="w-100 btn btn-primary btn-lg" type="button" onclick="encryption()"><b>Encrypt</b></button><br>
+            
+            </form>
+<br>
+        </div>
             </div>
         </div>
+
+        
+
+
+        
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+            <h4>Decryption</h4>
+            <form method="post">
+            <div class="col-sm-12">
+                <label for="message" class="form-label"><b>Block Cipher</b></label>
+                <select class="form-select" required="required" id="decryptionblock">
+                    <option selected>Select:</option>
+                    <option value="CBC" selected>CBC</option>
+                    
+                </select>
+            </div><br>
+
+            <div class="col-sm-12">
+                <label for="message" class="form-label"><b>Type</b></label>
+                <select class="form-select" required="required" id="decryptiontype">
+                    <option selected>Select:</option>
+                    <option value="AES" selected>AES</option>
+                    
+                    
+                </select>
+            </div><br>
+
+            <div class="col-sm-12">
+                <label for="message" class="form-label"><b>Size</b></label>
+                <select class="form-select" required="required" id="decryptionsize">
+                    <option selected>Select:</option>
+                    <option value="128" selected>128</option>
+                    <option value="256">256</option>
+                    
+                </select>
+            </div><br> 
+
+            <div class="col-sm-12">
+            <div class="form-group">
+                <label for="message" class="form-label"><b>Cipher Text</b></label>
+                <textarea class="form-control" rows="5" id="decryptionciphertext"></textarea>
+            </div>
+        </div><br>
+
+
+        <div class="col-sm-12">
+        <div class="form-group">
+            <label for="message" class="form-label"><b>Key</b></label>
+            <input  type="text" class="form-control" id="decryptionkey">
+        </div>
+    </div><br>
+
+    <div class="col-sm-12">
+        <div class="form-group">
+            <label for="message" class="form-label"><b>IV</b></label>
+            <input  type="text" class="form-control" id="decryptioniv">
+        </div>
+    </div><br>
+
+
+    <div class="col-sm-12">
+        <div class="form-group">
+            <label for="message" class="form-label"><b>Output</b></label>
+            <textarea class="form-control" rows="5" id="decryptionoutput"></textarea>
+        </div>
+    </div><br>
+    
+            <button class="w-100 btn btn-primary btn-lg" type="button" onclick="decryption()"><b>Decrypt</b></button><br>
+            
+            </form>
+<br>
+        </div>
+
+
+
+
+
+
+
+
+        
+
+
+       </div>
+    </div> 
+    <footer class="footer">
+        <div class="container text-center">
+          
+          <a href="https://twitter.com/Ano_F_"><i class="fa fa-twitter"></i></a>
+          <a href="https://github.com/Anof-cyber/CryptoJS"><i class="fa fa-github"></i></a>
+          
+        </div>
+      </footer>
     </div>
+    </div>
+    
 
 
+    
 
 
-
-
-    <footer class="footer-basic">
-        <div class="social"><a href="https://twitter.com/Ano_F_"><i class="icon ion-social-twitter"></i></a></div>
-        <p class="copyright">AnoF © 2022</p>
-    </footer>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/script.min.js"></script>
-</body>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="assets/js/aes.js"></script>
+    <script src="assets/js/sha256.min.js"></script>
+    <script src="assets/js/aes.min.js"> </script>
+    <script src="assets/js/encryption.js"></script>
+  </body>
 </html>
